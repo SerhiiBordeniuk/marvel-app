@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
+import {CSSTransition, TransitionGroup} from 'react-transition-group';
 
 import Spinner from "../spinner/Spinner";
 import ErrorMessage from "../errorMessage/ErrorMessage";
@@ -56,6 +57,7 @@ const CharList = (props) => {
             }
 
             return (
+            <CSSTransition key={item.id} timeout={500} classNames="char__item">
                 <li
                     className="char__item"
                     tabIndex={0}
@@ -79,10 +81,16 @@ const CharList = (props) => {
                     />
                     <div className="char__name">{item.name}</div>
                 </li>
+            </CSSTransition>
             );
         });
-        // А эта конструкция вынесена для центровки спиннера/ошибки
-        return <ul className="char__grid">{items}</ul>;
+        return (
+                <ul className="char__grid">
+                    <TransitionGroup component={null}>
+                        {items}
+                    </TransitionGroup>
+                </ul>
+            )
     }
 
     const items = renderItems(charList);
