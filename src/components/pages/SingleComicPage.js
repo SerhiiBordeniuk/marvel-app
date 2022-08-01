@@ -6,6 +6,7 @@ import Spinner from "../spinner/Spinner";
 import ErrorMessage from "../errorMessage/ErrorMessage";
 
 import "./singleComicPage.scss";
+import AppBanner from "../appBanner/AppBanner";
 
 const SingleComicPage = () => {
     const { comicId } = useParams();
@@ -33,6 +34,7 @@ const SingleComicPage = () => {
 
     return (
         <>
+            <AppBanner/>
             {errorMessage}
             {spinner}
             {content}
@@ -45,6 +47,7 @@ const View = ({ comic }) => {
 
     return (
         <div className="single-comic">
+
             <img src={thumbnail} alt={title} className="single-comic__img" />
             <div className="single-comic__info">
                 <h2 className="single-comic__name">{title}</h2>
